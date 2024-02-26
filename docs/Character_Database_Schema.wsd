@@ -1,0 +1,24 @@
+@startuml
+
+!define PRIMARY_KEY(x) <b><color:blue>x</color></b>
+!define METHOD(x) <color:green>x</color>
+
+entity Character {
+    + PRIMARY_KEY(id): int
+    --
+    name: str
+    height: int
+    mass: int
+    hair_color: str
+    skin_color: str
+    eye_color: str
+    birth_year: int
+    --
+    --
+    METHOD(get_all_characters())
+    METHOD(get_character_by_id())
+    METHOD(insert_new_character())
+    METHOD(delete_character_by_id())
+}
+
+@enduml
