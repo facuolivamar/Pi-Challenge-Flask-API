@@ -30,7 +30,10 @@ class CharacterPost(MethodView):
     @blp.arguments(CharacterSchema)
     @blp.response(201, CharacterSchema)
     def post(self, character_data):
-        character = CharacterModel(**character_data)
+        try:
+            character = CharacterModel(**character_data)
+        except ValueError as e:
+            abort(400, message=f"{e}")
 
         try:
             db.session.add(character)
