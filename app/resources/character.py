@@ -14,4 +14,16 @@ class CharacterList(MethodView):
     def get(self):
         return CharacterModel.query.all()
 
+    @blp.arguments(CharacterSchema)
+    @blp.response(201, CharacterSchema)
+    def post(self, character_data):
+        character = CharacterModel(**character_data)
+
+        try:
+            db.session.add(character)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500, message="An error occurred while inserting the character.")
+
+        return character
     
