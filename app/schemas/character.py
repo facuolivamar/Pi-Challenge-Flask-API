@@ -2,7 +2,7 @@
 from marshmallow import Schema, fields
 
 
-# Define a schema for the Character model
+# Define a schema for the Character model based on list retrieval specifications
 class CharacterSchemaList(Schema):
     id = fields.Int(required=True)
 
@@ -15,6 +15,8 @@ class CharacterSchemaList(Schema):
 
     birth_year = fields.Int(required=True)
 
+
+# Define a schema for the Character model based on all of its fields
 class CharacterSchema(CharacterSchemaList):
     hair_color = fields.Str(required=True)
     skin_color = fields.Str(required=True)

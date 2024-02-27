@@ -12,16 +12,20 @@ from schemas.character import CharacterSchema, CharacterSchemaList
 blp = Blueprint("Characters", "characters", description="Operations on characters")
 
 
-# Define endpoints for handling operations on a list of characters
+# Define endpoint for retrieving a list of characters
 @blp.route("/character/getAll")
 class CharacterList(MethodView):
+
     # Handler for GET request to retrieve all characters
     @blp.response(200, CharacterSchemaList(many=True))
     def get(self):
         return CharacterModel.query.all()
 
+
+# Define endpoint for inserting a new character
 @blp.route("/character/add")
-class CharacterList(MethodView):
+class CharacterPost(MethodView):
+
     # Handler for POST request to add a new character
     @blp.arguments(CharacterSchema)
     @blp.response(201, CharacterSchema)
@@ -37,17 +41,23 @@ class CharacterList(MethodView):
         return character
 
 
-# Define endpoints for handling operations on a single character
+# Define endpoint for retrieving a single character based on its id
 @blp.route("/character/get/<int:character_id>")
-class Character(MethodView):
+class CharacterGet(MethodView):
+
     # Handler for GET request to retrieve a single character by ID
     @blp.response(200, CharacterSchema)
     def get(self, character_id):
-        # Retrieve the character with the specified ID or abort with a 404
         character = CharacterModel.query.get_or_404(character_id)
+
         return character
 
-    # Handler for DELETE request to delete a single character by ID
+
+# Define endpoint for deleting a character based on its id
+@blp.route("/character/delete/<int:character_id>")
+class CharacterDelete(MethodView):
+
+    # Handler for DELETE request to delete a character by ID
     def delete(self, character_id):
         character = CharacterModel.query.get_or_404(character_id)
 
