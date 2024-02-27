@@ -36,7 +36,7 @@ class CharacterList(MethodView):
 
 
 # Define endpoints for handling operations on a single character
-@blp.route("/character/<int:character_id>")
+@blp.route("/character/get/<int:character_id>")
 class Character(MethodView):
     # Handler for GET request to retrieve a single character by ID
     @blp.response(200, CharacterSchema)
