@@ -6,17 +6,17 @@ from sqlalchemy.exc import SQLAlchemyError
 # Import database instance, Character model and Character schema
 from utils.db import db
 from models.character import CharacterModel
-from schemas.character import CharacterSchema
+from schemas.character import CharacterSchema, CharacterSchemaList
 
 # Create a Blueprint for handling character-related operations
 blp = Blueprint("Characters", "characters", description="Operations on characters")
 
 
 # Define endpoints for handling operations on a list of characters
-@blp.route("/character")
+@blp.route("/character/getAll")
 class CharacterList(MethodView):
     # Handler for GET request to retrieve all characters
-    @blp.response(200, CharacterSchema(many=True))
+    @blp.response(200, CharacterSchemaList(many=True))
     def get(self):
         return CharacterModel.query.all()
 
