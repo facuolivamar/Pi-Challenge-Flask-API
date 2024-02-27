@@ -27,3 +27,16 @@ class CharacterList(MethodView):
 
         return character
     
+
+@blp.route("/character/<int:character_id>")
+class Character(MethodView):
+    @blp.response(200, CharacterSchema)
+    def get(self, character_id):
+        character = CharacterModel.query.get_or_404(character_id)
+        return character
+
+    def delete(self, character_id):
+        character = CharacterModel.query.get_or_404(character_id)
+        db.session.delete(character)
+        db.session.commit()
+        return {"message": "Character deleted"}, 200
