@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 
 # Define a schema for the Character model
 class CharacterSchemaList(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int(required=True)
 
     name = fields.Str(required=True)
 
