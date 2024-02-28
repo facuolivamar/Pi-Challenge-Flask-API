@@ -26,7 +26,7 @@ Alternatively, if you prefer to run the API with Python, proceed as follows:
 
 ## API Documentation
 
-You can access the API documentation by visiting [http://127.0.0.1:5005/swagger-ui](http://127.0.0.1:5005/swagger-ui) in your browser.
+You can access the API documentation by visiting [http://127.0.0.1:5000/swagger-ui](http://127.0.0.1:5000/swagger-ui) in your browser.
 
 ## API Testing with Postman
 
